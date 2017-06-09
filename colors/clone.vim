@@ -48,7 +48,7 @@ highlight Special ctermfg=196 cterm=none guifg=#ee0000 gui=none
 " --------
 highlight Underlined ctermfg=121 cterm=underline guifg=#76eec6 gui=underline
 highlight Error ctermfg=15 ctermbg=88 cterm=bold guifg=#ffffff guibg=#800000 gui=bold
-highlight Search ctermfg=15 ctermbg=88 guifg=#ffffff guibg=#800000
+highlight Search ctermfg=1 ctermbg=none cterm=bold guifg=#800000 guibg=none gui=bold
 highlight Todo  ctermfg=124 ctermbg=184 cterm=bold guifg=#aa0000 guibg=#dddd00 gui=bold
 
 " Visual
