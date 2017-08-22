@@ -40,10 +40,6 @@ highlight PreProc ctermfg=39 cterm=none guifg=#00bfff gui=none
 " ----------
 highlight Type ctermfg=120 cterm=none guifg=#98fb98 gui=none
 
-" Special Group
-" -------------
-highlight Special ctermfg=196 cterm=none guifg=#ee0000 gui=none
-
 " Emphasis
 " --------
 highlight Underlined ctermfg=121 cterm=underline guifg=#76eec6 gui=underline
@@ -55,6 +51,11 @@ highlight Todo  ctermfg=124 ctermbg=184 cterm=bold guifg=#aa0000 guibg=#dddd00 g
 " ------
 highlight Visual ctermbg=237 guibg=#282828
 
+" Special Group
+" -------------
+highlight Special ctermfg=196 cterm=none guifg=#ee0000 gui=none
+highlight Whitespace ctermfg=15 ctermbg=88 guifg=#ffffff guibg=#800000
+
 " Corsor
 " ------
 set cursorline
@@ -62,7 +63,7 @@ if v:version < 704
   highlight clear cursorcolumn
 endif
 highlight CursorLine ctermbg=235 cterm=underline guibg=#202020 gui=underline
-highlight LineNr ctermfg=238 ctermbg=none  guifg=#404040 guibg=#000000
+highlight LineNr ctermfg=240 ctermbg=none  guifg=#404040 guibg=#000000
 highlight CursorLineNr ctermfg=203 ctermbg=235 guifg=#ff3030 guibg=#202020
 augroup cch
   autocmd! cch
@@ -85,7 +86,7 @@ augroup END
 
 " Popup menu
 " -----------
-highlight Pmenu ctermbg=gray ctermfg=black
-highlight PmenuSel ctermbg=LightGray ctermfg=black
-highlight PmenuSbar ctermbg=lightgray
-highlight PmenuThumb ctermbg=green
+highlight Pmenu ctermbg=23 ctermfg=250
+highlight PmenuSel ctermbg=26 ctermfg=250
+highlight PmenuSbar ctermbg=23
+highlight PmenuThumb ctermbg=38
