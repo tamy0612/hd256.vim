@@ -54,7 +54,7 @@ highlight Visual ctermbg=237 guibg=#282828
 " Special Group
 " -------------
 highlight Special ctermfg=196 cterm=none guifg=#ee0000 gui=none
-highlight Whitespace ctermfg=15 ctermbg=88 guifg=#ffffff guibg=#800000
+highlight Whitespace ctermfg=215 guifg=#ffaf5f
 
 " Corsor
 " ------
