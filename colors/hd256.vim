@@ -1,8 +1,8 @@
-" Vim colorscheme
-" Author: Yasumasa Tamura
-" Last Change: 12-Jun-2014.
+" hd256.vim
+" Vim dark colorscheme
 "
-" GUI / 256 color terminal
+" Author: Yasumasa Tamura
+" Last Change: 07 Nov. 2017
 
 highlight clear
 let colors_name = expand('<sfile>:t:r')
