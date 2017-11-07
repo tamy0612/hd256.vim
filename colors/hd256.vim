@@ -3,19 +3,45 @@
 "
 " Author: Yasumasa Tamura
 " Last Change: 07 Nov. 2017
-
-highlight clear
+"
 let colors_name = expand('<sfile>:t:r')
+
 set t_Co=256
 set background=dark
 
-" Base color
+highlight clear
+if v:version < 704 | highlight clear cursorcolumn | endif
+
+" Base
 " ----------
-highlight Normal ctermfg=252 ctermbg=none guifg=#d0d0d0 guibg=#000000
+highlight Normal       ctermfg=252  ctermbg=none                 guifg=#d0d0d0 guibg=none
+
+" Special characters
+" ----------
+highlight Comment      ctermfg=243               cterm=none      guifg=#767676               gui=none
+
+" Emphasis
+" ----------
+highlight Visual                    ctermbg=236                                guibg=#303030
+highlight IncSearch    ctermfg=203               cterm=bold
+highlight Error        ctermfg=15   ctermbg=88   cterm=bold      guifg=#ffffff guibg=#800000 gui=bold
+highlight Search       ctermfg=1    ctermbg=none cterm=bold      guifg=#800000 guibg=none    gui=bold
+highlight Todo         ctermfg=124  ctermbg=184  cterm=bold      guifg=#aa0000 guibg=#dddd00 gui=bold
+highlight link IncSearch Substitute
+
+" Boundary
+" ----------
+highlight CursorLine                ctermbg=234  cterm=underline               guibg=#202020 gui=underline
+highlight LineNr       ctermfg=243  ctermbg=234                  guifg=#767676 guibg=#303030
+highlight CursorLineNr ctermfg=254  ctermbg=234                  guifg=#ff5f5f guibg=#303030
+highlight VertSplit    ctermfg=234  ctermbg=234
+highlight TabLine      ctermfg=243  ctermbg=233
+highlight TabLineSel   ctermfg=203  ctermbg=234  cterm=bold
+highlight TabLineFill  ctermfg=none ctermbg=233
+
 
 " Comment Group
 " -------------
-highlight Comment ctermfg=243 cterm=none guifg=#6f6f6f gui=none
 
 " Constant Group
 " --------------
@@ -43,13 +69,9 @@ highlight Type ctermfg=120 cterm=none guifg=#98fb98 gui=none
 " Emphasis
 " --------
 highlight Underlined ctermfg=121 cterm=underline guifg=#76eec6 gui=underline
-highlight Error ctermfg=15 ctermbg=88 cterm=bold guifg=#ffffff guibg=#800000 gui=bold
-highlight Search ctermfg=1 ctermbg=none cterm=bold guifg=#800000 guibg=none gui=bold
-highlight Todo  ctermfg=124 ctermbg=184 cterm=bold guifg=#aa0000 guibg=#dddd00 gui=bold
 
 " Visual
 " ------
-highlight Visual ctermbg=237 guibg=#282828
 
 " Special Group
 " -------------
@@ -58,13 +80,17 @@ highlight Whitespace ctermfg=215 guifg=#ffaf5f
 
 " Corsor
 " ------
-set cursorline
-if v:version < 704
-  highlight clear cursorcolumn
-endif
-highlight CursorLine ctermbg=235 cterm=underline guibg=#202020 gui=underline
-highlight LineNr ctermfg=240 ctermbg=none  guifg=#404040 guibg=#000000
-highlight CursorLineNr ctermfg=203 ctermbg=235 guifg=#ff3030 guibg=#202020
+
+" Status line
+" -----------
+
+" Popup menu
+" -----------
+highlight Pmenu ctermbg=23 ctermfg=250
+highlight PmenuSel ctermbg=26 ctermfg=250
+highlight PmenuSbar ctermbg=23
+highlight PmenuThumb ctermbg=38
+
 augroup cch
   autocmd! cch
   autocmd WinLeave * set nocursorline
@@ -75,18 +101,9 @@ augroup cch
   endif
 augroup END
 
-" Status line
-" -----------
 augroup sl
   autocmd! sl
-  autocmd VimEnter * hi StatusLine ctermfg=LightGray ctermbg=DarkBlue cterm=none
-  autocmd InsertEnter * hi StatusLine ctermfg=White ctermbg=DarkRed cterm=none
-  autocmd InsertLeave * hi StatusLine ctermfg=LightGray ctermbg=DarkBlue cterm=none
+  autocmd VimEnter * highlight StatusLine ctermfg=LightGray ctermbg=DarkBlue cterm=none
+  autocmd InsertEnter * highlight StatusLine ctermfg=White ctermbg=DarkRed cterm=none
+  autocmd InsertLeave * highlight StatusLine ctermfg=LightGray ctermbg=DarkBlue cterm=none
 augroup END
-
-" Popup menu
-" -----------
-highlight Pmenu ctermbg=23 ctermfg=250
-highlight PmenuSel ctermbg=26 ctermfg=250
-highlight PmenuSbar ctermbg=23
-highlight PmenuThumb ctermbg=38
