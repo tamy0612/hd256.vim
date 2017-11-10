@@ -5,51 +5,68 @@
 " Last Change: 07 Nov. 2017
 "
 let colors_name = expand('<sfile>:t:r')
+let s:color_def = expand("<sfile>:h") . "/hd256.def"
 
 set t_Co=256
 set background=dark
 highlight clear
 
+if !filereadable(s:color_def)
+    let s:base = {"fg": 253, "bg": 234}
+    let s:color_table = {
+                \ "Normal": {"ctermfg": s:base.fg, "ctermbg": s:base.bg},
+                \ "SpecialKey": {"ctermfg": 196},
+                \ "WhiteSpace": {"ctermfg": 215},
+                \}
 
+    echomsg "[hd256] generating colorscheme ..."
+    execute "redir! >>" . s:color_def
+    for key in keys(s:color_table)
+        echo substitute(hd256#highlight_command(key, s:color_table[key]), '\s\+$', '', '')
+    endfor
+    redir END
+    echomsg "[hd256] generated to '" . s:color_def . "'"
+endif
+execute "source " . s:color_def
 " Base
 " ----------
-highlight      Normal       ctermfg=253  ctermbg=234  cterm=none      guifg=#d0d0d0 guibg=none    gui=none
-highlight      SpecialKey   ctermfg=196  ctermbg=none cterm=none      guifg=#ee0000 gui=none
-highlight      Whitespace   ctermfg=215  ctermbg=none cterm=none      guifg=#ffaf5f
+" highlight      Normal       ctermfg=253  ctermbg=234  cterm=none      guifg=#d0d0d0 guibg=none    gui=none
+" highlight      SpecialKey   ctermfg=196  ctermbg=none cterm=none      guifg=#ee0000 gui=none
+" highlight      Whitespace   ctermfg=215  ctermbg=none cterm=none      guifg=#ffaf5f
 
 
-" Area
+" Separator
 " ----------
-highlight      LineNr       ctermfg=245  ctermbg=236  cterm=none      guifg=#767676 guibg=#303030 gui=none
-highlight      CursorLineNr ctermfg=253  ctermbg=236  cterm=bold      guifg=#ff5f5f guibg=#303030 gui=bold
-highlight      VertSplit    ctermfg=234  ctermbg=236  cterm=none
-highlight link SignColumn   LineNr
+" highlight      LineNr       ctermfg=245  ctermbg=236  cterm=none      guifg=#767676 guibg=#303030 gui=none
+" highlight      CursorLineNr ctermfg=253  ctermbg=236  cterm=bold      guifg=#ff5f5f guibg=#303030 gui=bold
+" highlight      VertSplit    ctermfg=234  ctermbg=240  cterm=none
+" highlight link SignColumn   LineNr
 
-highlight      CursorLine   ctermfg=none ctermbg=none cterm=underline guifg=none    guibg=none    gui=underline
-highlight      CorsorColumn ctermfg=none ctermbg=236  cterm=none
+" highlight      CursorLine   ctermfg=none ctermbg=none cterm=underline guifg=none    guibg=none    gui=underline
+" highlight      CorsorColumn ctermfg=none ctermbg=236  cterm=none
 
-highlight      TabLineFill  ctermfg=none ctermbg=17   cterm=none
-highlight      TabLine      ctermfg=243  ctermbg=17   cterm=none
-highlight      TabLineSel   ctermfg=203  ctermbg=17   cterm=bold
+" highlight      TabLineFill  ctermfg=none ctermbg=17   cterm=none
+" highlight      TabLine      ctermfg=243  ctermbg=17   cterm=none
+" highlight      TabLineSel   ctermfg=203  ctermbg=17   cterm=bold
 
 
 
 " Emphasis
 " ----------
-highlight      Visual       ctermfg=none ctermbg=240   cterm=none     guifg=none    guibg=#303030 gui=none
-highlight      Search       ctermfg=203  ctermbg=none  cterm=bold     guifg=#800000 guibg=none    gui=bold
-highlight      Error        ctermfg=15   ctermbg=88    cterm=bold     guifg=#ffffff guibg=#800000 gui=bold
-highlight      Todo         ctermfg=124  ctermbg=184   cterm=bold     guifg=#aa0000 guibg=#dddd00 gui=bold
-highlight link Search       IncSearch
-highlight link Search       Substitute
+" highlight      Visual       ctermfg=none ctermbg=240   cterm=none     guifg=none    guibg=#303030 gui=none
+" highlight      Search       ctermfg=203  ctermbg=none  cterm=bold     guifg=#800000 guibg=none    gui=bold
+" highlight      Error        ctermfg=15   ctermbg=88    cterm=bold     guifg=#ffffff guibg=#800000 gui=bold
+" highlight      Todo         ctermfg=124  ctermbg=184   cterm=bold     guifg=#aa0000 guibg=#dddd00 gui=bold
+" highlight link Search       IncSearch
+" highlight link Search       Substitute
 
 
 " Popup menu
 " -----------
-highlight      Pmenu ctermbg=23 ctermfg=250
-highlight      PmenuSel ctermbg=26 ctermfg=250
-highlight      PmenuSbar ctermbg=23
-highlight      PmenuThumb ctermbg=38
+" highlight      Pmenu ctermbg=23 ctermfg=250
+" highlight      PmenuSel ctermbg=26 ctermfg=250
+" highlight      PmenuSbar ctermbg=23
+" highlight      PmenuThumb ctermbg=38
 
 
 " Blocks
